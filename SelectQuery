@@ -1,1 +1,7 @@
+//createbTable:
+create table Student(
+id int,
+name Varchar(30));
+
+//select Query:
 select * from Student;
