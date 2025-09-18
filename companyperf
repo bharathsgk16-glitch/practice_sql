@@ -1,0 +1,12 @@
+create database practice
+use practice;
+create table company_employees(emp_id int auto_increment primary key,
+name varchar(50),dob date,salary decimal(10,2),is_permanent boolean);
+insert into company_employees(name,dob,salary,is_permanent) values
+('bahrath','1990-11-24',800000.00,true),('karth','2004-01-12',80000.00,false),('satgh','2003-10-21',700000.00,true),
+('thouban','1990-12-02',70000.00,false);
+select * from company_employees  where salary>70000;
+select*from company_employees  where is_permanent=true and salary>1990;
+update company_employees set salary=600000.00 where emp_id=3;
+delete from company_employees where emp_id=5;
+select*from company_employees;
