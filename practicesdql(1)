@@ -1,0 +1,46 @@
+*Select All Columns*
+   Fetch all columns from the Student table. 
+select * from student;
+2. *Select Specific Columns*
+   Fetch only student_name and branch from the Student table.
+select student_name,branch
+from student;
+3. *Distinct Values*
+   Fetch distinct branches from the Student table.
+select distinct branch from student;
+4. *Where Clause with Comparison*
+   Fetch all students whose age is greater than 20.
+   select * from student where age>20;   
+5. *Where Clause with LIKE*
+   Fetch all students whose name starts with 'L'.
+   select * from student where student_name like 'l%';
+6. *Where Clause with IN / NOT IN*
+   Fetch all students whose student_id is in (1, 3, 5).
+   select * from student where student_id in(1,3,5);
+   select * from student where student_id not in(1,3,5);
+7. *Where Clause with BETWEEN*
+   Fetch all students whose age is between 20 and 25.
+select * 
+from student
+ where age between 20 and 25;
+8. *Order By*
+   Fetch all students sorted by age in descending order.
+select *
+ from student
+ order by age asc;
+9. *Aggregate Functions
+   * Count total students
+   * Find the maximum age
+   * Find the minimum age
+   * Find the average age
+   select 
+ count(*)as total_student,
+ max(age) as max_age,
+ min(age)as min_age,
+ avg(age)as average_age
+ from student;                
+10. *Group By and Having*
+    Group students by branch and count how many students are in each branch. Also, fetch only branches having more than 2 students.
+	 select  branch,count(student_id) as total_student from student
+ group by(branch)
+ having count(student_id)>=2;m
