@@ -1,0 +1,108 @@
+Views Practice Questions
+
+1. *Simple View*
+   Create a view StudentView that shows only student_name, branch, and marks from the Student table.
+
+2. *View with WHERE Clause*
+   Create a view CSEStudents that shows students whose branch is 'CSE'.
+
+3. *View with JOIN*
+   Create a view StudentDeptView that shows student_name and dept_name using the Student, Student_Department, and Department tables.
+
+4. *View with Aggregate*
+   Create a view DeptStudentCount that shows each dept_name and number of students in that department.
+
+5. *Update via View* (only updatable views)
+   Update marks of a student using a view (assume the view contains only student_name and marks).
+
+Aswer:
+CREATE TABLE Department (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50),
+    location VARCHAR(50)
+);
+CREATE TABLE Student (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    age INT,
+    branch VARCHAR(30),
+    marks DECIMAL(5,2),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+);
+INSERT INTO Department VALUES
+(1, 'IT', 'Chennai'),
+(2, 'CSE', 'Coimbatore'),
+(3, 'ECE', 'Bangalore'),
+(4, 'EEE', 'Madurai'),
+(5, 'MECH', 'Salem'),
+(6, 'CIVIL', 'Trichy');
+
+INSERT INTO Student VALUES
+(101, 'Logeshwari', 21, 'CSE', 88.50, 2),
+(102, 'Dhivya', 20, 'IT', 76.00, 1),
+(103, 'Kavin', 22, 'ECE', 65.00, 3),
+(104, 'Meena', 21, 'CSE', 91.00, 2),
+(105, 'Ragul', 22, 'EEE', 59.00, 4),
+(106, 'Saran', 21, 'MECH', 72.00, 5),
+(107, 'Deepika', 20, 'IT', 83.00, 1),
+(108, 'Praveen', 23, 'ECE', 69.50, 3),
+(109, 'Harini', 21, 'CSE', 94.00, 2),
+(110, 'Vignesh', 22, 'CIVIL', 68.00, null);
+select * from department;
+select * from student;
+use joins_simple;
+select * from department;
+select * from student;
+create view studentview as
+select student_name,branch,marks
+from student;
+select * from studentview;
+
+create view StudentDeptview as
+select s.student_name,d.dept_name
+from student s
+join department d
+on s.dept_id=d.dept_id;
+select * from  StudentDeptview;
+
+create view DeptStudentCounts as
+select d.dept_name,count(s.student_id)as studentcount
+from student s
+join department d
+on s.dept_id=d.dept_id
+group by d.dept_name;
+
+ SET sql_safe_updates=0;
+
+update studentview set student_name="bharath" where marks=91;
+---
+
+Index 
+
+1. *Create Index*
+   Create an index on the student_name column in the Student table.
+
+2. *Create Composite Index*
+   Create a composite index on branch and marks in the Student table.
+
+3. *Drop Index*
+   Drop the index created on student_name.
+
+4. *Check Index Usage* (EXPLAIN)
+   Write a query to fetch students with marks > 80 and explain how MySQL uses the index.
+
+5. *Unique Index*
+   Create a unique index on the email column of Student table.
+   Answer:--
+   create index indxname on student(student_name); 
+ create index indx_branch_mark on student(branch,marks);
+  drop index indxname on student;
+  explain select * from student where marks>80;
+show index from student;
+
+alter table student
+add email varchar(50);
+
+create unique index index_email on student(email);
+
