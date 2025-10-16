@@ -1,0 +1,69 @@
+ ### *⿡ String Functions Practice Questions*
+
+1. Fetch the student_name in *uppercase* from the Student table.
+select upper(student_name)as Studentname from student;
+2. Fetch the student_name in *lowercase* from the Student table.
+select lower(student_name)as Studentname from student;
+3. Fetch the *length* of each student_name.
+ select length(student_name)as lengthcount from student;
+4. Fetch the *first 3 characters* of each student_name.
+ select substring(student_name,1,3)as threchar from student;
+5. Concatenate student_name and branch with a dash (-) in between.
+select concat(student_name,"-",branch)as dashes from student;
+6. Replace 'CSE' with 'Computer Science' in the branch column.
+select REPLACE(branch, 'CSE', 'Computer Science') 
+ as repalces from  student;
+ UPDATE student
+SET branch = REPLACE(branch, 'CSE', 'Computer Science');
+7. Trim any *leading and trailing spaces* from student_name.
+select trim(student_name)as trim from student;
+update student set student_name=trim(student_name);
+---
+
+### *⿢ Numeric Functions Practice Questions*
+
+1. Fetch the *round* value of a given column marks (assume marks exists in Student).
+select student_name, round(marks)as roundedmarks from 
+Student;
+2. Fetch the *ceiling* value of marks.
+select ceiling(marks)as ceilingmarks from student;
+3. Fetch the *floor* value of marks.
+select floor(marks)as floorgmarks from student;
+
+4. Fetch the *absolute value* of a column balance (assume balance exists).
+select student_name,abs(balance)
+AS abs_balance
+FROM student;
+5. Fetch the *sum* of marks for all students.
+select sum(marks)as totalmarks from student;
+6. Fetch the *average* marks of students.
+select avg(marks)as totalmarks from student;
+7. Fetch the *minimum* and *maximum* marks.
+select min(marks)as mminvaluec,
+min(marks)as maxvalues
+from student;
+---
+
+### *⿣ Date Functions Practice Questions*
+
+1. Fetch the *current date*.
+select current_date()as toadaydate;
+2. Fetch the *current time*.
+select current_time() as todaytime;
+3. Fetch the *current date and time*.
+select now() as todaytimeandtime;
+4. Add 7 days to a dob column (assume dob exists in Student).
+select student_name,dob,dob+interval 7 day as dobplus7days
+from student;
+5. Subtract 1 month from dob.
+select student_name,dob, DATEDIFF(CURRENT_DATE, dob) as diffof
+from student;
+6. Find the *difference in days* between dob and today.
+select student_name,dob, DATEDIFF(CURRENT_DATE, dob) as diffof
+from student;
+7. Extract the *year, **month, and **day* from dob
+select student_name,dob,
+year(dob)as yearof,
+month(dob)as monthof,
+day(dob)as dayof
+from student;
