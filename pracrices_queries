@@ -1,0 +1,75 @@
+create database interprac;
+use interprac;
+show databases;
+-- DDL comands
+create table student(name varchar(50),id int,marks double);
+describe student_details;
+alter table student add address varchar(50);
+alter table student modify age double;
+alter table student rename student_details;
+alter table student_details rename column name to stu_name;
+alter table student_details drop column address;
+drop table student_details;
+-- DML commands
+insert into student values("bahrath",12,50.0);
+insert into student values("Raht",13,100.0),("Harini",12,46.00);
+
+update student set id=14 where name ="Harini" ;
+SET SQL_SAFE_UPDATES = 0;
+delete from student where id=13;
+-- DQL commands 
+select * from student;
+select id from student;
+select * from student where id=12;
+select * from student where id>12;
+-- and or operators used in query
+create table employee(employee_id int,firstname varchar(50),
+lastname varchar(50),houlypay decimal(5,2),hiredate date);
+insert into employee values(1,'bharath','raj',34.04,'2025-03-15'),
+(2,'thob','van',23.04,'2023-03-15'),
+(3,'log','weri',34.02,'2025-03-15'),
+(4,'bharani','kris',23.03,'2024-03-15');
+select * from employee where employee_id>3 and hiredate between '2024-01-01' AND '2024-12-31';
+select * from employee where employee_id>=3 or hiredate between '2024-01-01' AND '2024-12-31';
+-- //distict avoid repeated values
+-- Advance of dql
+select * from employee order by houlypay;
+select * from employee order by houlypay desc;
+select * from employee limit  3;
+select * from employee where firstname like "b%";
+select * from employee where firstname like "%b";
+select * from employee where firstname like "___";
+select sum( employee_id) from employee ;
+-- min and max
+-- key
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+create table orders(order_id int  primary key,emp_id int,
+foreign key(emp_id) references employees(emp_id));
+insert into employees values(1,'bahrath');
+drop table orders;
+-- joins
+CREATE TABLE employe(
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    dept_id INT
+);
+create table department(
+dept_id int primary key,
+dept_name varchar(50));
+
+INSERT INTO department (dept_id, dept_name) VALUES
+(10, 'IT'),
+(20, 'HR');
+
+INSERT INTO employe (emp_id, name, dept_id) VALUES
+(8, 'Ravi', 10),
+(2, 'Priya', 20),
+(3, 'Arun', 30),
+(4, 'Meena', 50);
+select e.emp_id,e.name,d.dept_name
+from employe e
+inner join department d
+on e.dept_id=d.dept_id;
